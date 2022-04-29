@@ -1,0 +1,23 @@
+{
+    "name": "ahmed/custommvc",
+    "autoload": {
+        "psr-4": {
+            "Ahmed\\Custommvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ahmed ashraf",
+            "email": "ahmashrafmans@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+
+
+    }
+}
