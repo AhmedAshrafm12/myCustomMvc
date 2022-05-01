@@ -1,1 +1,2 @@
-home page
+welmc
+<?php echo $name;?>

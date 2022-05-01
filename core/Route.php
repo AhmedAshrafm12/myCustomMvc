@@ -25,6 +25,10 @@ return "not found";
 if(is_string($callback)){
 return $this->render($callback);
 }
+else if(is_array($callback)){
+$callback[0]=new $callback[0];
+return call_user_func($callback,$this->request);
+}
 
 
 
@@ -33,18 +37,22 @@ return $this->render($callback);
 
 // render
 
-public function render($callback)
+public function render($callback , $params = [])
 {
    $layoutContent = $this->renderlayout('main');
-   $ViewContent = $this->renderView($callback);
- return str_replace("{{ 'content' }}",$ViewContent,$layoutContent);
+   $ViewContent = $this->renderView($callback,$params);
+  return str_replace("{{ 'content' }}",$ViewContent,$layoutContent);
 
 }
 
 
 // render veiw 
-public function renderView($view)
+public function renderView($view,$params)
 {
+    foreach($params as $key=>$value)
+    {
+       $$key = $value; 
+    }
     ob_start();
     include_once  Application::$Route_Dir."/views/$view.php";
     return ob_get_clean();
