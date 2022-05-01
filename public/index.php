@@ -3,6 +3,7 @@
 use app\controllers\authController;
 use app\controllers\siteController;
 use app\core\Application;
+use app\core\dataBase;
 
 require_once "../vendor/autoload.php";
 // var_dump(app\core\Application::$App);
@@ -11,3 +12,7 @@ $App->route->get("/login","login");
 $App->route->post("/login",[authController::class,"login"]); 
 $App->route->get("/",[siteController::class,"index"]);
 $App->run();
+
+
+
+//   var_dump($_ENV);  
