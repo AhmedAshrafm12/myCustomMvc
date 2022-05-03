@@ -13,6 +13,7 @@ $App = new Application(dirname(__DIR__));
 $App->route->get("/login","login"); 
 $App->route->post("/login",[authController::class,"login"]); 
 $App->route->post("/register",[authController::class,"register"]); 
+$App->route->get("/logout",[authController::class,"logout"]); 
 $App->route->get("/register","register"); 
 $App->route->get("/",[siteController::class,"index"]);
 $App->run();

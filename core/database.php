@@ -24,11 +24,12 @@ $pendingMigrations =  array_diff($files,$appliedMigs);
 $newMigrations = [];
 foreach($pendingMigrations as $migration){
     if ($migration != '.' && $migration != '..') {
+        $tableName = explode('_',$migration)[1];
         $className = pathinfo($migration, PATHINFO_FILENAME);
         require_once (dirname(__DIR__).'/migrations/'.$migration);
         $obj = new $className();
         array_push($newMigrations,$migration);
-        $obj->up();
+        $obj->up($tableName);
     }
 
 }
@@ -50,7 +51,7 @@ else{
 
 public function createMigrationTable(){
 
-    $this->pdo->exec("CREATE TABLE IF NOT EXISTS `coffee`.`migrations` ( `id` INT NOT NULL AUTO_INCREMENT , `migration` TEXT NOT NULL , `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB; ");
+    $this->pdo->exec("CREATE TABLE IF NOT EXISTS ".$_ENV['DB_NAME'].".`migrations` ( `id` INT NOT NULL AUTO_INCREMENT , `migration` TEXT NOT NULL , `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB; ");
     
     }
     

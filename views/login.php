@@ -1,10 +1,11 @@
 <?php
 
 use app\core\Application;
-echo (Application::$App->session->getFlash('error'));
+if(Application::$App->session->getFlash('error'))
+echo "<div class='alert alert-danger'>".Application::$App->session->getFlash('error')."</div>"
 
 ;?>
-
+<div style="background-color: #bdc4bb;" class="p-4">
 <form method="POST" action="login">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
@@ -21,3 +22,4 @@ echo (Application::$App->session->getFlash('error'));
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>

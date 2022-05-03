@@ -8,7 +8,7 @@ public  function __construct()
     session_start();
 
     //  mark 
-    $flashs = $_SESSION[self::FLASH_KEY];
+    $flashs = $_SESSION[self::FLASH_KEY] ?? [];
     if (!empty($flashs)) {
         foreach ($flashs  as &$flash) {
             $flash['removed'] = true;
@@ -36,7 +36,7 @@ return $_SESSION[self::FLASH_KEY][$key]['value'] ?? '';
 
 public  function __destruct()
 {
-    $flashs = $_SESSION[self::FLASH_KEY];
+    $flashs = $_SESSION[self::FLASH_KEY] ?? [];
     foreach ($flashs  as $key=> &$flash) {
        if($flash['removed'] == true)
         unset($flashs[$key]);
