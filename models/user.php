@@ -5,6 +5,11 @@ use app\core\Model;
 
 class user extends Model{
 
+   public $attributes = [
+       'firstName' ,
+    'lastName' ,
+     'email' ,
+      'password'];
 public function getTableName()
 {
     return 'users';
@@ -16,7 +21,7 @@ public function getpk()
 
 public function getAttributes()
 {
-    return ['firstName' , 'lastName' , 'email' , 'password'];
+    return $this->attributes;
 }
 
 

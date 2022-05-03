@@ -1,6 +1,8 @@
 <?php
-if(isset($errors))
-print_r($errors)
+
+use app\core\Application;
+echo (Application::$App->session->getFlash('error'));
+
 ;?>
 
 <form method="POST" action="login">

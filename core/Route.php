@@ -27,6 +27,7 @@ return $this->render($callback);
 }
 else if(is_array($callback)){
 $callback[0]=new $callback[0];
+Application::$App->controller =$callback[0];
 return call_user_func($callback,$this->request);
 }
 
@@ -68,7 +69,7 @@ public function renderView($view,$params)
 public function renderlayout($layout)
 {
     ob_start();
-    include_once  Application::$Route_Dir."/views/layouts/$layout.php";
+    include_once  Application::$Route_Dir."/views/layouts/".Application::$App->controller->getLayout().".php";
     return ob_get_clean();
 }
 
